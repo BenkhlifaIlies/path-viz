@@ -4,4 +4,4 @@ Hello and welcome to PathFinder. I built this app because I am fascinated by alg
 
 I genuinely hope you enjoy experimenting with this visualization tool as much as I did building it.
 
-You can access it here : n/a
+You can access it here : https://pathviz-benkhelifailyes.netlify.app/

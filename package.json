@@ -2,7 +2,7 @@
   "name": "path-viz",
   "author": "BenkhlifaIlies",
   "description": "A visualization tool for various path finding algorithms",
-  "homepage": "n/a",
+  "homepage": "https://pathviz-benkhelifailyes.netlify.app/",
   "keywords": [
     "visualization tool",
     "path finding algorithms",
@@ -18,6 +18,9 @@
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier -w ./src/",
+    "test": "vitest run",
+    "testing": "vitest",
+    "coverage": "vitest run --coverage",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -33,9 +36,11 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "husky": "^8.0.0",
     "prettier": "^3.0.2",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
-    "husky": "^8.0.0"
+    "vite-plugin-pwa": "^0.16.4",
+    "vitest": "^0.34.3"
   }
 }
