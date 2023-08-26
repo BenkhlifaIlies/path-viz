@@ -4,9 +4,12 @@ import MainLayout from './layouts/mainLayout';
 import TutorialModal from './components/tutorialModal';
 
 import './assets/styles/App.css';
+import SettingsModal from './components/settingsModal';
 
 function MyApp() {
   const [tutorialModalVisibility, setTutorialModalVisibility] =
+    useState<boolean>(false);
+  const [settingslModalVisibility, setSettingslModalVisibility] =
     useState<boolean>(false);
 
   useLayoutEffect(() => {
@@ -23,6 +26,11 @@ function MyApp() {
         {tutorialModalVisibility && (
           <TutorialModal
             setTutorialModalVisibility={setTutorialModalVisibility}
+          />
+        )}
+        {settingslModalVisibility && (
+          <SettingsModal
+            setSettingslModalVisibility={setSettingslModalVisibility}
           />
         )}
       </MainLayout>
