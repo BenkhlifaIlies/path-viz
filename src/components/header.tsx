@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Button from './common/button';
-import Logo from '../assets/svg/sortviz.svg';
+import Logo from '../assets/svg/pathviz.svg';
 import { RunSvg, ClearSvg, ResetSvg, CogSvg } from './common/icons';
 
 const Header = () => {
