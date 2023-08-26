@@ -25,6 +25,11 @@ export type AnimationSpeed = 50 | 200 | 500 | 1000;
 
 export type MazesAndPatterns = 'None';
 
+export type ToastType = {
+  id: number;
+  message: string;
+};
+
 export type CellType = {
   row: number;
   column: number;
