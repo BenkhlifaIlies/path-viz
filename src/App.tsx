@@ -5,6 +5,7 @@ import TutorialModal from './components/tutorialModal';
 
 import './assets/styles/App.css';
 import SettingsModal from './components/settingsModal';
+import PageNotFound from './pages/404';
 
 function MyApp() {
   const [tutorialModalVisibility, setTutorialModalVisibility] =
@@ -43,6 +44,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<MyApp />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );
