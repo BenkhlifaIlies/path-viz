@@ -1,6 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Chivo+Mono&display=swap');
 
 :root {
+  --gray: '#bbbbbb ';
+  --gray97: #f7f7f7;
+  --light-gray-shade: #bbbbbb;
+  --dark-gray: #a9a9a9;
+  --nice-blue: #3178c6;
 }
 
 html {

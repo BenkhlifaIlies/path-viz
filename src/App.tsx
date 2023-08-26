@@ -1,12 +1,30 @@
+import { useState, useLayoutEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './assets/styles/App.css';
 import MainLayout from './layouts/mainLayout';
+import TutorialModal from './components/tutorialModal';
+
+import './assets/styles/App.css';
 
 function MyApp() {
+  const [tutorialModalVisibility, setTutorialModalVisibility] =
+    useState<boolean>(false);
+
+  useLayoutEffect(() => {
+    if (window.sessionStorage.getItem('show-tutorial') !== 'false') {
+      setTutorialModalVisibility(true);
+      window.sessionStorage.setItem('show-tutorial', 'false');
+    }
+  }, []);
+
   return (
     <>
       <MainLayout>
         <h1>Hello World!</h1>
+        {tutorialModalVisibility && (
+          <TutorialModal
+            setTutorialModalVisibility={setTutorialModalVisibility}
+          />
+        )}
       </MainLayout>
     </>
   );
