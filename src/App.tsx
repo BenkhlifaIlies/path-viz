@@ -7,12 +7,16 @@ import './assets/styles/App.css';
 import SettingsModal from './components/settingsModal';
 import PageNotFound from './pages/404';
 import About from './pages/about';
+import { CellType, ContextType, Settings } from './constants/types';
+import { AppContext, settingsObj } from './context/context';
 
 function MyApp() {
   const [tutorialModalVisibility, setTutorialModalVisibility] =
     useState<boolean>(false);
   const [settingslModalVisibility, setSettingslModalVisibility] =
     useState<boolean>(false);
+  const [settings, updateSettings] = useState<Settings>(settingsObj);
+  const [values, updateValues] = useState<CellType[][]>([]);
 
   useLayoutEffect(() => {
     if (window.sessionStorage.getItem('show-tutorial') !== 'false') {
@@ -21,8 +25,21 @@ function MyApp() {
     }
   }, []);
 
+  const toggleModalVisibility = () => {
+    setSettingslModalVisibility(!settingslModalVisibility);
+  };
+
+  const initContext: ContextType = {
+    values,
+    updateValues,
+    settingslModalVisibility,
+    toggleModalVisibility,
+    settings,
+    updateSettings,
+  };
+
   return (
-    <>
+    <AppContext.Provider value={initContext}>
       <MainLayout>
         <h1>Hello World!</h1>
         {tutorialModalVisibility && (
@@ -36,7 +53,7 @@ function MyApp() {
           />
         )}
       </MainLayout>
-    </>
+    </AppContext.Provider>
   );
 }
 

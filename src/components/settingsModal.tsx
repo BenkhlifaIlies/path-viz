@@ -1,40 +1,44 @@
-// import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 
 import Modal from './common/modal';
 import Button from './common/button';
 import DropDown from './common/dropDown';
-// import { Settings } from '../constants/types';
+
+import { Settings } from '../constants/types';
+import { AppContext } from '../context/context';
+import {
+  algoOptions,
+  animationoptions,
+  mazeOptions,
+} from '../constants/constants';
 
 interface IProps {
   setSettingslModalVisibility: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SettingsModal = ({ setSettingslModalVisibility }: IProps) => {
-  //   const [settings, setSettings] = useState<Settings>({
-  //     algorithm,
-  //     speed,
-  //     startNodeRow,
-  //     startNodeCol,
-  //     finishNodeRow,
-  //     finishNodeCol,
-  //     mazesAndPatterns,
-  //   });
+  const { settings, updateSettings } = useContext(AppContext);
+
+  const [currentSettings, setSettings] = useState<Settings>({
+    ...settings,
+  });
 
   const setField = (field: string, value: string | number) => {
-    // setSettings({
-    //   ...settings,
-    //   [field]: value,
-    // });
-    console.log(field, value);
+    setSettings({
+      ...currentSettings,
+      [field]: value,
+    });
   };
 
   const handleSubmit = () => {
-    console.log('Settings updated.');
+    updateSettings(currentSettings);
+    setSettingslModalVisibility(false);
+    // pushNotification('Settings updated.');
   };
 
   const handleClose = () => {
-    console.log('Settings closed');
+    setSettingslModalVisibility(false);
   };
 
   return (
@@ -44,8 +48,8 @@ const SettingsModal = ({ setSettingslModalVisibility }: IProps) => {
           <label htmlFor="algorithm">Algorithm</label>
           <div>
             <DropDown
-              currentOption={'algo1'}
-              options={['algo1', 'algo2']}
+              currentOption={currentSettings.algorithm}
+              options={algoOptions}
               applyTo={'algorithm'}
               setField={setField}
             ></DropDown>
@@ -55,9 +59,20 @@ const SettingsModal = ({ setSettingslModalVisibility }: IProps) => {
           <label htmlFor="speed">Speed</label>
           <div>
             <DropDown
-              currentOption={String('200')}
-              options={[100, 200, 500]}
+              currentOption={String(currentSettings.speed)}
+              options={animationoptions}
               applyTo={'speed'}
+              setField={setField}
+            ></DropDown>
+          </div>
+        </Flex>
+        <Flex>
+          <label htmlFor="mazes and patterns">Mazes and patterns</label>
+          <div>
+            <DropDown
+              currentOption={String(currentSettings.mazesAndPatterns)}
+              options={mazeOptions}
+              applyTo={'mazesAndPatterns'}
               setField={setField}
             ></DropDown>
           </div>

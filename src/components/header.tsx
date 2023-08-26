@@ -3,8 +3,15 @@ import styled from 'styled-components';
 import Button from './common/button';
 import Logo from '../assets/svg/pathviz.svg';
 import { RunSvg, ClearSvg, ResetSvg, CogSvg } from './common/icons';
+import { useContext } from 'react';
+import { AppContext } from '../context/context';
 
 const Header = () => {
+  const {
+    // values, updateValues, settings,
+    toggleModalVisibility,
+  } = useContext(AppContext);
+
   const findPath = () => {
     console.log('run pressed');
   };
@@ -14,10 +21,6 @@ const Header = () => {
 
   const handleClear = () => {
     console.log('Clear pressed');
-  };
-
-  const openModal = () => {
-    console.log('opem modal pressed');
   };
 
   const { pathname } = useLocation();
@@ -51,7 +54,11 @@ const Header = () => {
               >
                 <ClearSvg />
               </Button>
-              <Button variant="control-panel" label="" onClick={openModal}>
+              <Button
+                variant="control-panel"
+                label=""
+                onClick={toggleModalVisibility}
+              >
                 <CogSvg />
               </Button>
             </ControlPanel>
