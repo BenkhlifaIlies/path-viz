@@ -12,6 +12,7 @@ import {
   animationoptions,
   mazeOptions,
 } from '../constants/constants';
+import Input from './common/input';
 
 interface IProps {
   setSettingslModalVisibility: React.Dispatch<React.SetStateAction<boolean>>;
@@ -20,12 +21,12 @@ interface IProps {
 const SettingsModal = ({ setSettingslModalVisibility }: IProps) => {
   const { settings, updateSettings } = useContext(AppContext);
 
-  const [currentSettings, setSettings] = useState<Settings>({
+  const [currentSettings, setCurrentSettings] = useState<Settings>({
     ...settings,
   });
 
   const setField = (field: string, value: string | number) => {
-    setSettings({
+    setCurrentSettings({
       ...currentSettings,
       [field]: value,
     });
@@ -77,6 +78,12 @@ const SettingsModal = ({ setSettingslModalVisibility }: IProps) => {
             ></DropDown>
           </div>
         </Flex>
+        <Input
+          settings={currentSettings}
+          setSettings={setCurrentSettings}
+          value={currentSettings.startNodeRow}
+          target="startNodeRow"
+        />
       </Modal.Body>
       <Modal.Footer>
         <FlexEnd>
