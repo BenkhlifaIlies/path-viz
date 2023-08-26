@@ -78,12 +78,49 @@ const SettingsModal = ({ setSettingslModalVisibility }: IProps) => {
             ></DropDown>
           </div>
         </Flex>
-        <Input
-          settings={currentSettings}
-          setSettings={setCurrentSettings}
-          value={currentSettings.startNodeRow}
-          target="startNodeRow"
-        />
+
+        <h3>Start Node Coordinates </h3>
+        <FlexWrapper>
+          <Flex>
+            <label htmlFor="start node row">Row</label>
+            <Input
+              settings={currentSettings}
+              setSettings={setCurrentSettings}
+              value={currentSettings.startNodeRow}
+              target="startNodeRow"
+            />
+          </Flex>
+          <Flex>
+            <label htmlFor="start node column">Column</label>
+            <Input
+              settings={currentSettings}
+              setSettings={setCurrentSettings}
+              value={currentSettings.startNodeCol}
+              target="startNodeCol"
+            />
+          </Flex>
+        </FlexWrapper>
+        <h3>Finish Node Coordinates </h3>
+        <FlexWrapper>
+          <Flex>
+            <label htmlFor="finish node row">Row</label>
+            <Input
+              settings={currentSettings}
+              setSettings={setCurrentSettings}
+              value={currentSettings.finishNodeRow}
+              target="finishNodeRow"
+            />
+          </Flex>
+          <Flex>
+            <label htmlFor="finish node column">Column</label>
+            <Input
+              settings={currentSettings}
+              setSettings={setCurrentSettings}
+              value={currentSettings.finishNodeCol}
+              target="finishNodeCol"
+            />
+          </Flex>
+        </FlexWrapper>
       </Modal.Body>
       <Modal.Footer>
         <FlexEnd>
@@ -110,6 +147,13 @@ const Flex = styled.div`
   align-items: center;
   gap: 1rem;
   margin-block: 1rem;
+`;
+const FlexWrapper = styled.div`
+  @media (min-width: 767px) {
+    flex-direction: row;
+    display: flex;
+    gap: 1rem;
+  }
 `;
 const FlexEnd = styled(Flex)`
   justify-content: flex-end;
