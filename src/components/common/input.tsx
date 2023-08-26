@@ -48,6 +48,9 @@ const StyledInput = styled.input`
   transition:
     border-color ease-in-out 0.15s,
     box-shadow ease-in-out 0.15s;
+  @media (min-width: 767px) {
+    width: 160px;
+  }
 `;
 
 export default Input;
