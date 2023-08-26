@@ -19,7 +19,7 @@ interface IProps {
 }
 
 const SettingsModal = ({ setSettingslModalVisibility }: IProps) => {
-  const { settings, updateSettings } = useContext(AppContext);
+  const { settings, updateSettings, pushNotification } = useContext(AppContext);
 
   const [currentSettings, setCurrentSettings] = useState<Settings>({
     ...settings,
@@ -35,7 +35,7 @@ const SettingsModal = ({ setSettingslModalVisibility }: IProps) => {
   const handleSubmit = () => {
     updateSettings(currentSettings);
     setSettingslModalVisibility(false);
-    // pushNotification('Settings updated.');
+    pushNotification('Settings updated.');
   };
 
   const handleClose = () => {

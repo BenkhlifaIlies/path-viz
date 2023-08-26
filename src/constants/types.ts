@@ -7,6 +7,7 @@ export type ContextType = {
 
   settingslModalVisibility: boolean;
   toggleModalVisibility: () => void;
+  pushNotification: (toastMsg: string) => void;
 };
 
 export type Settings = {

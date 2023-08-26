@@ -7,14 +7,16 @@ import './assets/styles/App.css';
 import SettingsModal from './components/settingsModal';
 import PageNotFound from './pages/404';
 import About from './pages/about';
-import { CellType, ContextType, Settings } from './constants/types';
+import { CellType, ContextType, Settings, ToastType } from './constants/types';
 import { AppContext, settingsObj } from './context/context';
+import Toast from './components/common/toast';
 
 function MyApp() {
   const [tutorialModalVisibility, setTutorialModalVisibility] =
     useState<boolean>(false);
   const [settingslModalVisibility, setSettingslModalVisibility] =
     useState<boolean>(false);
+  const [notif, setNotif] = useState<ToastType[]>([]);
   const [settings, updateSettings] = useState<Settings>(settingsObj);
   const [values, updateValues] = useState<CellType[][]>([]);
 
@@ -29,6 +31,16 @@ function MyApp() {
     setSettingslModalVisibility(!settingslModalVisibility);
   };
 
+  const pushNotification = (message: string) => {
+    setNotif([
+      ...notif,
+      {
+        id: notif.length + 1,
+        message,
+      },
+    ]);
+  };
+
   const initContext: ContextType = {
     values,
     updateValues,
@@ -36,6 +48,7 @@ function MyApp() {
     toggleModalVisibility,
     settings,
     updateSettings,
+    pushNotification,
   };
 
   return (
@@ -52,6 +65,7 @@ function MyApp() {
             setSettingslModalVisibility={setSettingslModalVisibility}
           />
         )}
+        <Toast toastlist={notif} setList={setNotif} />
       </MainLayout>
     </AppContext.Provider>
   );
