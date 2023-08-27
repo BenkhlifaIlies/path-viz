@@ -1,5 +1,6 @@
 import { Algorithm, CellType } from '../constants/types';
 import AStarAlgorithm from './aStar';
+import BFSAlgorithm from './bfs';
 import DFSAlgorithm from './dfs';
 import dijkstraAlgorithm from './dijkstraAlgorithm';
 
@@ -24,6 +25,8 @@ export default async function findPathByAlgorithm(
       return AStarAlgorithm(grid, startNode, finishNode, speed, updateValues);
     case 'DFS':
       return DFSAlgorithm(grid, startNode, finishNode, speed, updateValues);
+    case 'BFS':
+      return BFSAlgorithm(grid, startNode, finishNode, speed, updateValues);
     default:
       break;
   }
