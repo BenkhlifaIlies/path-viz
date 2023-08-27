@@ -69,10 +69,8 @@ const CellNode = ({
 
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     if (event.dataTransfer.getData('text/plain') === 'finishNode') {
-      // console.log(settings);
       grid[row][column].isFinish = true;
       grid[settings.finishNodeRow][settings.finishNodeCol].isFinish = false;
-      // console.log( grid[settings.finishNodeRow][settings.finishNodeCol]);
 
       updateSettings({
         ...settings,
