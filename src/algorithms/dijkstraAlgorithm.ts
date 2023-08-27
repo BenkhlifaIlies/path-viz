@@ -14,9 +14,6 @@ export default async function dijkstraAlgorithm(
   updateValues: (arr: CellType[][]) => void,
 ) {
   const visitedNodesInOrder = [];
-  //   runInAction(() => {
-  // startNode.distance = 0;
-  //   });
   grid[startNode.row][startNode.column].distance = 0;
   updateValues([...grid]);
   const unvisitedNodes = getAllNodes(grid);
@@ -26,9 +23,6 @@ export default async function dijkstraAlgorithm(
 
     if (closestNode && !closestNode.isWall) {
       if (closestNode.distance === Infinity) return [...visitedNodesInOrder];
-      //   runInAction(() => {
-      //   closestNode.isVisited = true;
-      //   });
       closestNode.isVisited = true;
       updateValues([...grid]);
       await sleep(speed);
@@ -46,10 +40,6 @@ function updateUnvisitedNeighbors(
 ) {
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
   for (const neighbor of unvisitedNeighbors) {
-    // runInAction(() => {
-    // neighbor.distance = node.distance + 1;
-    // neighbor.previousNode = node;
-    // });
     neighbor.distance = node.distance + 1;
     neighbor.previousNode = node;
     updateValues([...grid]);
