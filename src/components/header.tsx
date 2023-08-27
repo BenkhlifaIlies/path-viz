@@ -5,22 +5,37 @@ import Logo from '../assets/svg/pathviz.svg';
 import { RunSvg, ClearSvg, ResetSvg, CogSvg } from './common/icons';
 import { useContext } from 'react';
 import { AppContext } from '../context/context';
+import { creaateInitialGrid, resetGrid } from '../helpers/gridgen';
 
 const Header = () => {
   const {
-    // values, updateValues, settings,
+    values: grid,
+    settings,
+    updateValues,
     toggleModalVisibility,
   } = useContext(AppContext);
 
   const findPath = () => {
     console.log('run pressed');
   };
+
   const handleReset = () => {
-    console.log('Reset pressed');
+    updateValues(
+      resetGrid(grid, settings.finishNodeRow, settings.finishNodeCol),
+    );
   };
 
   const handleClear = () => {
-    console.log('Clear pressed');
+    updateValues(
+      creaateInitialGrid(
+        grid.length,
+        grid[0].length,
+        settings.startNodeRow,
+        settings.startNodeCol,
+        settings.finishNodeRow,
+        settings.finishNodeCol,
+      ),
+    );
   };
 
   const { pathname } = useLocation();

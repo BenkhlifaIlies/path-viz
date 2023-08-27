@@ -1,3 +1,5 @@
+import { CellType } from '../constants/types';
+
 export const creaateInitialGrid = (
   rowCount: number,
   colCount: number,
@@ -47,4 +49,23 @@ export const createNode = (
     distanceToFinishNode:
       Math.abs(finishNodeRow - row) + Math.abs(finishNodeColumn - column),
   };
+};
+
+export const resetGrid = (
+  grid: CellType[][],
+  finishNodeRow: number,
+  finishNodeCol: number,
+) => {
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      grid[i][j].isVisited = false;
+      grid[i][j].isInShortestPath = false;
+      grid[i][j].distance = Number.POSITIVE_INFINITY;
+      grid[i][j].previousNode = null;
+      grid[i][j].distanceToFinishNode =
+        Math.abs(finishNodeRow - grid[i][j].row) +
+        Math.abs(finishNodeCol - grid[i][j].column);
+    }
+  }
+  return [...grid];
 };
