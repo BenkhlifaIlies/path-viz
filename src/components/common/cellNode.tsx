@@ -83,7 +83,6 @@ const CellNode = ({
 
       updateSettings({ ...settings, startNodeRow: row, startNodeCol: column });
     }
-    console.log(settings);
     updateValues([...grid]);
   };
 
