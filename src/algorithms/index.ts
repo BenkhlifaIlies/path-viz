@@ -1,4 +1,5 @@
 import { Algorithm, CellType } from '../constants/types';
+import AStarAlgorithm from './aStar';
 import dijkstraAlgorithm from './dijkstraAlgorithm';
 
 export default async function findPathByAlgorithm(
@@ -18,6 +19,8 @@ export default async function findPathByAlgorithm(
         speed,
         updateValues,
       );
+    case 'A*':
+      return AStarAlgorithm(grid, startNode, finishNode, speed, updateValues);
     default:
       break;
   }
