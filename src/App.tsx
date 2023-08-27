@@ -8,8 +8,18 @@ import SettingsModal from './components/settingsModal';
 import PageNotFound from './pages/404';
 import About from './pages/about';
 import { CellType, ContextType, Settings, ToastType } from './constants/types';
-import { AppContext, settingsObj } from './context/context';
+import { AppContext } from './context/context';
 import Toast from './components/common/toast';
+import NodeGrid from './components/nodeGrid';
+import { creaateInitialGrid } from './helpers/gridgen';
+import {
+  finishNodeCol,
+  finishNodeRow,
+  initSettingsObj,
+  startNodeCol,
+  startNodeRow,
+} from './constants/constants';
+import useWindowSize from './hooks/useWindowSize';
 
 function MyApp() {
   const [tutorialModalVisibility, setTutorialModalVisibility] =
@@ -17,8 +27,20 @@ function MyApp() {
   const [settingslModalVisibility, setSettingslModalVisibility] =
     useState<boolean>(false);
   const [notif, setNotif] = useState<ToastType[]>([]);
-  const [settings, updateSettings] = useState<Settings>(settingsObj);
-  const [values, updateValues] = useState<CellType[][]>([]);
+
+  const [Columns, Rows] = useWindowSize();
+  const [settings, updateSettings] = useState<Settings>(initSettingsObj);
+
+  const [values, updateValues] = useState<CellType[][]>(
+    creaateInitialGrid(
+      Rows,
+      Columns,
+      startNodeRow,
+      startNodeCol,
+      finishNodeRow,
+      finishNodeCol,
+    ),
+  );
 
   useLayoutEffect(() => {
     if (window.sessionStorage.getItem('show-tutorial') !== 'false') {
@@ -54,7 +76,7 @@ function MyApp() {
   return (
     <AppContext.Provider value={initContext}>
       <MainLayout>
-        <h1>Hello World!</h1>
+        <NodeGrid columns={Columns} rows={Rows} />
         {tutorialModalVisibility && (
           <TutorialModal
             setTutorialModalVisibility={setTutorialModalVisibility}

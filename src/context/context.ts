@@ -13,23 +13,22 @@ import {
   mazeOptions,
 } from '../constants/constants';
 
-export const settingsObj: Settings = {
+const settingsObj: Settings = {
   algorithm: algoOptions[0] as Algorithm,
   speed: animationoptions[1] as AnimationSpeed,
   mazesAndPatterns: mazeOptions[0] as MazesAndPatterns,
-  startNodeRow: 1,
-  startNodeCol: 1,
-  finishNodeRow: 3,
-  finishNodeCol: 3,
+  startNodeRow: 0,
+  startNodeCol: 0,
+  finishNodeRow: 0,
+  finishNodeCol: 0,
 };
 
 const initialState = {
   values: [] as CellType[][],
   updateValues: () => {},
-
   settingslModalVisibility: false,
   toggleModalVisibility: () => {},
-
+  pushNotification: () => {},
   settings: settingsObj,
   updateSettings: () => {},
 };
