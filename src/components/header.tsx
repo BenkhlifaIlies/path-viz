@@ -6,6 +6,11 @@ import { RunSvg, ClearSvg, ResetSvg, CogSvg } from './common/icons';
 import { useContext } from 'react';
 import { AppContext } from '../context/context';
 import { creaateInitialGrid, resetGrid } from '../helpers/gridgen';
+import findPathByAlgorithm from '../algorithms/index';
+import {
+  animateShortestPath,
+  getNodesInShortestPathOrder,
+} from '../helpers/animation';
 
 const Header = () => {
   const {
@@ -13,10 +18,26 @@ const Header = () => {
     settings,
     updateValues,
     toggleModalVisibility,
+    pushNotification,
   } = useContext(AppContext);
 
-  const findPath = () => {
-    console.log('run pressed');
+  const findPath = async () => {
+    await findPathByAlgorithm(
+      grid,
+      settings.algorithm,
+      settings.speed,
+      grid[settings.startNodeRow][settings.startNodeCol],
+      grid[settings.finishNodeRow][settings.finishNodeCol],
+      updateValues,
+    );
+    const nodesInShortestPathOrder = getNodesInShortestPathOrder(
+      grid[settings.finishNodeRow][settings.finishNodeCol],
+    );
+
+    await animateShortestPath(grid, nodesInShortestPathOrder);
+
+    const toastMsg = `${settings.algorithm} finished executing successfully`;
+    pushNotification(toastMsg);
   };
 
   const handleReset = () => {
