@@ -1,27 +1,22 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import TwitterSvg from '../assets/svg/twitter.svg';
-import LinkedinSvg from '../assets/svg/linkedin.svg';
-import GithubSvg from '../assets/svg/github.svg';
-
+import {
+  TwitterIcon,
+  LinkedInIcon,
+  GithubIcon,
+  BlogLogo,
+} from './common/icons';
 const Footer = () => {
   return (
     <StyledFooter>
       <Wrapper>
         <Container>
-          <StyledUl className="list-style-none d-flex flex-items-center mb-3 mb-sm-0 lh-condensed-ultra">
+          <StyledUl>
             <StyledLi>
-              <a href="https://twitter.com/IlyesBenkhlifa" target="_blank">
-                <img
-                  src={TwitterSvg}
-                  height="18"
-                  width="22"
-                  alt="Twitter icon"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="sr-only">My Twitter</span>
+              <a href="https://blog.iliesbenkhelifa.com/" target="_blank">
+                <BlogLogo />
+                <span className="sr-only">My Blog</span>
               </a>
             </StyledLi>
             <StyledLi>
@@ -29,28 +24,20 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/ilyesbenkhelifa/"
                 target="_blank"
               >
-                <img
-                  src={LinkedinSvg}
-                  height="18"
-                  width="22"
-                  alt="Linkedin icon"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <LinkedInIcon />
                 <span className="sr-only">My LinkedIn</span>
               </a>
             </StyledLi>
             <StyledLi>
               <a href="https://github.com/BenkhlifaIlies" target="_blank">
-                <img
-                  src={GithubSvg}
-                  height="18"
-                  width="22"
-                  alt="Github icon"
-                  loading="lazy"
-                  decoding="async"
-                />
+                <GithubIcon />
                 <span className="sr-only">My GitHub</span>
+              </a>
+            </StyledLi>
+            <StyledLi>
+              <a href="https://twitter.com/IlyesBenkhlifa" target="_blank">
+                <TwitterIcon />
+                <span className="sr-only">My Twitter</span>
               </a>
             </StyledLi>
           </StyledUl>
@@ -62,7 +49,7 @@ const Footer = () => {
               </StyledLi>
               <StyledLi>
                 <a
-                  href="https://github.com/BenkhlifaIlies/path-viz"
+                  href="https://github.com/BenkhlifaIlies/sort-viz"
                   target="_blank"
                 >
                   View Source
@@ -71,13 +58,17 @@ const Footer = () => {
               <StyledLi>
                 <a href="mailto:theiliesbenkhlifa@gmail.com">Contact</a>
               </StyledLi>
-              <StyledLi>Blog</StyledLi>
             </StyledUl>
           </nav>
         </Container>
         <StyledHr />
         <StyledP>
-          &copy; {new Date().getFullYear()} Benkhelifa Ilyes. | Made with
+          &copy; {new Date().getFullYear()},
+          <a href="https://iliesbenkhelifa.com/" target="_blank">
+            Benkhelifa Ilyes.
+            <span className="sr-only">My Portfolio</span>
+          </a>
+          | Made with
           <StyledSpan> &#9829;</StyledSpan> by Benkhelifa Ilyes.
         </StyledP>
       </Wrapper>
@@ -152,6 +143,11 @@ const StyledP = styled.p`
   font-weight: lighter;
   text-align: center;
   margin: 0;
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: bold;
+  }
 `;
 const StyledSpan = styled.span`
   color: var(--pure-red);
